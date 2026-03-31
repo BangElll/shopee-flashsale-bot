@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: shopee-flashsale-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT telegram_shopee_bot_fixed:app
+    envVars:
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: ADMIN_CHAT_ID
+        sync: false
+      - key: SHOPEE_USERNAME
+        sync: false
+      - key: SHOPEE_PASSWORD
+        sync: false
+    plan: free
+    autoDeploy: true
